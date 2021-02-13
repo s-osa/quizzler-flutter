@@ -27,7 +27,7 @@ class QuizPage extends StatefulWidget {
 
 class _QuizPageState extends State<QuizPage> {
   QuizBrain quizBrain = QuizBrain();
-  List<Icon> scoreKeeper = [];
+  List<bool> scoreKeeper = [];
 
   @override
   Widget build(BuildContext context) {
@@ -65,27 +65,11 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer = quizBrain.currentQuestionAnswer();
-
                 setState(() {
-                  if (correctAnswer == true) {
-                    scoreKeeper.add(
-                      Icon(
-                        Icons.check,
-                        color: Colors.green,
-                      ),
-                    );
-                  } else {
-                    scoreKeeper.add(
-                      Icon(
-                        Icons.close,
-                        color: Colors.red,
-                      ),
-                    );
-                  }
-
-                  quizBrain.proceed();
+                  scoreKeeper.add(quizBrain.currentQuestionAnswer() == true);
                 });
+
+                quizBrain.proceed();
               },
             ),
           ),
@@ -103,33 +87,17 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                bool correctAnswer = quizBrain.currentQuestionAnswer();
-
                 setState(() {
-                  if (correctAnswer == false) {
-                    scoreKeeper.add(
-                      Icon(
-                        Icons.check,
-                        color: Colors.green,
-                      ),
-                    );
-                  } else {
-                    scoreKeeper.add(
-                      Icon(
-                        Icons.close,
-                        color: Colors.red,
-                      ),
-                    );
-                  }
-
-                  quizBrain.proceed();
+                  scoreKeeper.add(quizBrain.currentQuestionAnswer() == false);
                 });
+
+                quizBrain.proceed();
               },
             ),
           ),
         ),
         Row(
-          children: scoreKeeper,
+          children: scoreKeeper.map((b) => (b ? Icon(Icons.check, color: Colors.green) : Icon(Icons.close, color: Colors.red))).toList(),
         ),
       ],
     );
