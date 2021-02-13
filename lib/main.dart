@@ -25,13 +25,18 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<Icon> scoreKeeper = [
-  ];
+  List<Icon> scoreKeeper = [];
 
   List<String> questions = [
     'You can lead a cow down stairs but not up stairs.',
     'Approximately one quarter of human bones are in the feet.',
     'A slug\'s blood is green.',
+  ];
+
+  List<bool> answers = [
+    false,
+    true,
+    true,
   ];
 
   int questionIndex = 0;
@@ -72,8 +77,30 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                bool correctAnswer = answers[questionIndex];
+
                 setState(() {
+                  if (correctAnswer == true) {
+                    scoreKeeper.add(
+                      Icon(
+                        Icons.check,
+                        color: Colors.green,
+                      ),
+                    );
+                  } else {
+                    scoreKeeper.add(
+                      Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      ),
+                    );
+                  }
+
                   questionIndex++;
+
+                  if (questionIndex == questions.length) {
+                    questionIndex = 0;
+                  }
                 });
               },
             ),
@@ -92,8 +119,30 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
+                bool correctAnswer = answers[questionIndex];
+
                 setState(() {
+                  if (correctAnswer == false) {
+                    scoreKeeper.add(
+                      Icon(
+                        Icons.check,
+                        color: Colors.green,
+                      ),
+                    );
+                  } else {
+                    scoreKeeper.add(
+                      Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      ),
+                    );
+                  }
+
                   questionIndex++;
+
+                  if (questionIndex == questions.length) {
+                    questionIndex = 0;
+                  }
                 });
               },
             ),
