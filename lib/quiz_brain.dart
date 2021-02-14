@@ -1,9 +1,9 @@
 import 'package:quizzler/question.dart';
 
 class QuizBrain {
-  int index = 0;
+  int _index = 0;
 
-  List<Question> questions = [
+  List<Question> _questions = [
     Question('Some cats are actually allergic to humans', true),
     Question('You can lead a cow down stairs but not up stairs.', false),
     Question('Approximately one quarter of human bones are in the feet.', true),
@@ -21,15 +21,15 @@ class QuizBrain {
     Question('In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.', true),
   ];
 
-  Question currentQuestion() => questions[index];
-  String currentQuestionText() => currentQuestion().text;
-  bool currentQuestionAnswer() => currentQuestion().answer;
+  Question _getCurrentQuestion() => _questions[_index];
+  String getCurrentQuestionText() => _getCurrentQuestion().text;
+  bool getCurrentQuestionAnswer() => _getCurrentQuestion().answer;
 
   void proceed() {
-    index++;
+    _index++;
 
-    if (index == questions.length) {
-      index = 0;
+    if (_index == _questions.length) {
+      _index = 0;
     }
   }
 }

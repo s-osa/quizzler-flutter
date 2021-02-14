@@ -41,7 +41,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.currentQuestionText(),
+                quizBrain.getCurrentQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -66,7 +66,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  scoreKeeper.add(quizBrain.currentQuestionAnswer() == true);
+                  scoreKeeper.add(quizBrain.getCurrentQuestionAnswer() == true);
                 });
 
                 quizBrain.proceed();
@@ -88,7 +88,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 setState(() {
-                  scoreKeeper.add(quizBrain.currentQuestionAnswer() == false);
+                  scoreKeeper.add(quizBrain.getCurrentQuestionAnswer() == false);
                 });
 
                 quizBrain.proceed();
